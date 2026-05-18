@@ -1,0 +1,84 @@
+id: infineon-igbt-module-example
+manufacturer: Infineon
+part_number: IGBT-MODULE-EXAMPLE
+technology: Si
+device_class: module
+description: 1200 V IGBT half-bridge module example.
+tags:
+  - igbt
+  - module
+  - half-bridge
+package:
+  name: EconoDUAL
+  mounting: screw
+  pins:
+    - dc_plus
+    - dc_minus
+    - ac
+  isolation_voltage:
+    value: 2500
+    unit: V
+    condition: { rms: true, duration: 60 s }
+    source_id: ds
+ratings:
+  voltage:
+    value: 1200
+    unit: V
+    condition: { vces: true }
+    source_id: ds
+  current:
+    value: 200
+    unit: A
+    condition: { tc: 80 C }
+    source_id: ds
+electrical:
+  vce_sat:
+    value: 1.85
+    unit: V
+    condition: { ic: 200 A, vge: 15 V, tj: 25 C }
+    source_id: ds
+thermal:
+  rth_jc_igbt:
+    value: 0.11
+    unit: K/W
+    condition: { path: junction_to_case }
+    source_id: ds
+module:
+  topology: half_bridge
+  has_ntc: true
+  switch_positions:
+    - high_side
+    - low_side
+  die_count:
+    value: 4
+    unit: count
+    condition: { note: paralleled dies in module example }
+    source_id: estimate
+  thermal_paths:
+    - from: igbt_junction
+      to: case
+      rth: 0.11 K/W
+curves:
+  - id: eoff-vs-current
+    type: switching_energy
+    source_id: ds
+    condition: { vcc: 600 V, vge: 15 V, rg: 2.2 ohm, tj: 125 C }
+    x: { label: Collector current, unit: A }
+    y: { label: Turn-off energy, unit: mJ }
+    points:
+      - [50, 8]
+      - [100, 16]
+      - [200, 38]
+    digitization: { method: representative_sample }
+sources:
+  - id: ds
+    type: datasheet
+    category: manufacturer_document
+    subtype: datasheet_table
+    title: Infineon IGBT module example datasheet
+    revision: example
+  - id: estimate
+    type: estimate
+    category: estimate
+    subtype: manual_estimate
+    title: Development placeholder estimate

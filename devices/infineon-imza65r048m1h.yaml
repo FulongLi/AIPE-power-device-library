@@ -1,0 +1,67 @@
+id: infineon-imza65r048m1h
+manufacturer: Infineon
+part_number: IMZA65R048M1H
+technology: SiC
+device_class: mosfet
+description: 650 V CoolSiC MOSFET example record.
+tags:
+  - sic
+  - mosfet
+  - discrete
+package:
+  name: TO-247-4
+  mounting: through_hole
+  pins:
+    - drain
+    - source
+    - gate
+    - kelvin_source
+ratings:
+  voltage:
+    value: 650
+    unit: V
+    condition: { vgs: 0 V }
+    source_id: ds
+  current:
+    value: 40
+    unit: A
+    condition: { tc: 25 C }
+    source_id: ds
+electrical:
+  rds_on:
+    value: 48
+    unit: mohm
+    condition: { vgs: 18 V, tj: 25 C }
+    source_id: ds
+  gate_charge:
+    value: 62
+    unit: nC
+    condition: { vds: 400 V, id: 20 A, vgs: 18 V }
+    source_id: ds
+thermal:
+  rth_jc:
+    value: 0.62
+    unit: K/W
+    condition: { path: junction_to_case }
+    source_id: ds
+curves:
+  - id: rds-on-vs-temperature
+    type: on_resistance_vs_temperature
+    source_id: ds
+    condition: { vgs: 18 V, normalized: true }
+    x: { label: Junction temperature, unit: C }
+    y: { label: Normalized Rds_on, unit: ohm }
+    points:
+      - [-50, 0.75]
+      - [25, 1.0]
+      - [100, 1.32]
+      - [150, 1.55]
+    digitization: { method: representative_sample }
+sources:
+  - id: ds
+    type: datasheet
+    category: manufacturer_document
+    subtype: datasheet_table
+    title: Infineon IMZA65R048M1H datasheet
+    revision: example
+    notes: Example metadata for development.

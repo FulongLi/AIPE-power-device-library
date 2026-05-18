@@ -1,0 +1,64 @@
+id: cree-sic-sbd-example
+manufacturer: Wolfspeed
+part_number: SIC-SBD-EXAMPLE
+technology: SiC
+device_class: diode
+description: Silicon-carbide Schottky barrier diode example.
+tags:
+  - sic
+  - diode
+  - sbd
+package:
+  name: TO-220-2
+  mounting: through_hole
+  pins:
+    - anode
+    - cathode
+ratings:
+  voltage:
+    value: 650
+    unit: V
+    condition: { vr: true }
+    source_id: ds
+  current:
+    value: 10
+    unit: A
+    condition: { tc: 135 C }
+    source_id: ds
+electrical:
+  forward_voltage:
+    value: 1.5
+    unit: V
+    condition: { if: 10 A, tj: 25 C }
+    source_id: ds
+  reverse_recovery_charge:
+    value: 0
+    unit: nC
+    condition: { schottky: true }
+    source_id: ds
+thermal:
+  rth_jc:
+    value: 1.6
+    unit: K/W
+    condition: { path: junction_to_case }
+    source_id: ds
+curves:
+  - id: forward-iv
+    type: iv_output
+    source_id: ds
+    condition: { tj: 25 C }
+    x: { label: Forward voltage, unit: V }
+    y: { label: Forward current, unit: A }
+    points:
+      - [0.8, 0.2]
+      - [1.0, 1.5]
+      - [1.3, 6]
+      - [1.5, 10]
+    digitization: { method: representative_sample }
+sources:
+  - id: ds
+    type: datasheet
+    category: manufacturer_document
+    subtype: datasheet_table
+    title: SiC SBD example datasheet
+    revision: example

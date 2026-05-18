@@ -1,0 +1,29 @@
+id: dpt-raw-package-id
+source_id: lab-characterization-source-id
+test_type: double_pulse_test
+operator: test_engineer
+test_date: '2026-05-18'
+equipment:
+  - name: Oscilloscope
+    asset_id: SCOPE-001
+    calibration_due: '2027-05-18'
+  - name: Double pulse test bench
+    asset_id: DPT-001
+    calibration_due: '2027-05-18'
+setup:
+  dc_link_voltage: 400 V
+  load_current: 20 A
+  gate_drive_on: 18 V
+  gate_drive_off: -3 V
+  gate_resistance_on: 5 ohm
+  gate_resistance_off: 2 ohm
+  case_temperature: 25 C
+artifacts:
+  - kind: raw_waveform
+    path: raw/manufacturer-part-number/dpt-raw-package-id/waveforms.csv
+    format: csv
+    description: Raw oscilloscope waveform export.
+  - kind: post_processed_dataset
+    path: raw/manufacturer-part-number/dpt-raw-package-id/switching-energy.csv
+    format: csv
+    description: Extracted Eon/Eoff/Err data points with processing script version.

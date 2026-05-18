@@ -1,0 +1,67 @@
+id: manufacturer-part-number
+manufacturer: Infineon
+part_number: PART-NUMBER
+technology: SiC
+device_class: mosfet
+description: Short device description.
+tags:
+  - sic
+  - mosfet
+package:
+  name: TO-247-4
+  mounting: through_hole
+  pins:
+    - drain
+    - source
+    - gate
+ratings:
+  voltage:
+    value: 650
+    unit: V
+    condition: { vgs: 0 V }
+    source_id: ds
+  current:
+    value: 40
+    unit: A
+    condition: { tc: 25 C }
+    source_id: ds
+electrical:
+  rds_on:
+    value: 48
+    unit: mohm
+    condition: { vgs: 18 V, tj: 25 C }
+    source_id: ds
+thermal:
+  rth_jc:
+    value: 0.62
+    unit: K/W
+    condition: { path: junction_to_case }
+    source_id: ds
+curves:
+  - id: output-characteristic
+    type: iv_output
+    source_id: ds_curve
+    condition: { vgs: 18 V, tj: 25 C }
+    x: { label: Drain-source voltage, unit: V }
+    y: { label: Drain current, unit: A }
+    points:
+      - [0, 0]
+      - [1, 10]
+    digitization:
+      method: datasheet_curve_digitized
+      tool: manual
+sources:
+  - id: ds
+    type: datasheet
+    category: manufacturer_document
+    subtype: datasheet_table
+    title: Manufacturer datasheet title
+    revision: Rev. 1.0
+    url: https://example.com/datasheet.pdf
+  - id: ds_curve
+    type: datasheet
+    category: manufacturer_document
+    subtype: datasheet_curve_digitized
+    title: Digitized datasheet curve
+    revision: Rev. 1.0
+    url: https://example.com/datasheet.pdf

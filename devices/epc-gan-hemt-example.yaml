@@ -1,0 +1,107 @@
+id: epc-gan-hemt-example
+manufacturer: EPC
+part_number: EPC-GAN-EXAMPLE
+technology: GaN
+device_class: hemt
+description: Enhancement-mode GaN HEMT example record with GaN-specific fields.
+tags:
+  - gan
+  - hemt
+  - e-mode
+package:
+  name: LGA
+  mounting: surface_mount
+  pins:
+    - drain
+    - source
+    - gate
+ratings:
+  voltage:
+    value: 100
+    unit: V
+    condition: { vgs: 0 V }
+    source_id: ds
+  current:
+    value: 35
+    unit: A
+    condition: { tc: 25 C }
+    source_id: ds
+electrical:
+  rds_on:
+    value: 3.2
+    unit: mohm
+    condition: { vgs: 5 V, tj: 25 C }
+    source_id: ds
+  eoss:
+    value: 6.8
+    unit: uJ
+    condition: { vds: 80 V }
+    source_id: ds
+gan:
+  structure: e_mode
+  has_body_diode: false
+  dynamic_rds_on_factor:
+    value: 1.15
+    unit: ohm
+    condition: { vds_off: 80 V, pulse_width: 10 us }
+    source_id: meas
+  vgs_abs_max:
+    value: 6
+    unit: V
+    condition: { absolute_maximum: true }
+    source_id: ds
+  reverse_conduction_voltage:
+    value: 1.8
+    unit: V
+    condition: { ids: 10 A, vgs: 0 V }
+    source_id: ds
+curves:
+  - id: output-characteristic
+    type: iv_output
+    source_id: ds
+    condition: { vgs: 5 V, tj: 25 C }
+    x: { label: Drain-source voltage, unit: V }
+    y: { label: Drain current, unit: A }
+    points:
+      - [0, 0]
+      - [0.05, 10]
+      - [0.1, 22]
+      - [0.15, 35]
+    digitization: { method: representative_sample }
+sources:
+  - id: ds
+    type: datasheet
+    category: manufacturer_document
+    subtype: datasheet_table
+    title: EPC GaN HEMT example datasheet
+    revision: example
+  - id: meas
+    type: raw_test_data
+    category: third_party_characterization
+    subtype: double_pulse_test
+    title: Example dynamic Rds_on pulse measurement
+    lab: Characterization partner lab
+    date: '2026-05-18'
+    traceability:
+      calibration_status: placeholder
+      report_id: LAB-DYN-RDS-001
+raw_data_packages:
+  - id: dyn-rds-pulse-001
+    source_id: meas
+    test_type: double_pulse_test
+    operator: lab_engineer
+    test_date: '2026-05-18'
+    equipment:
+      - name: Double pulse test bench
+        asset_id: DPT-placeholder
+        calibration_due: '2027-05-18'
+    setup:
+      vds_off: 80 V
+      id_on: 10 A
+      gate_drive: 5 V
+      ambient: 25 C
+    artifacts:
+      - kind: raw_waveform
+        path: raw/epc-gan-hemt-example/dyn-rds-pulse-001/waveforms.csv
+        format: csv
+        description: Placeholder path for raw oscilloscope waveform export.

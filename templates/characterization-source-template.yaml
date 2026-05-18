@@ -1,0 +1,13 @@
+id: lab-characterization-source-id
+type: raw_test_data
+category: third_party_characterization
+subtype: double_pulse_test
+title: Third-party characterization raw double-pulse dataset
+lab: Characterization partner lab name
+date: '2026-05-18'
+traceability:
+  report_id: LAB-REPORT-ID
+  calibration_status: calibrated
+  calibration_due: '2027-05-18'
+  operator: test_engineer
+notes: Raw data source owned by the characterization lab or imported under agreement.
