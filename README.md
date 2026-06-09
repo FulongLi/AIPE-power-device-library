@@ -1,74 +1,69 @@
-# AIPE Power Device Library
+# AIPE Device Intelligence V1
 
-Local web application and data library for managing power semiconductor devices.
+AIPE V1 is a Codex-facing gateway for public transistor data and model asset
+discovery. It imports public records from the UPB-LEA Transistor Database File
+Exchange, stores raw JSON plus normalized device summaries, and exposes a small
+FastAPI surface that a Codex skill can call for search, detail, comparison, and
+model-asset lookup.
 
-The project is built around a source-of-truth file library: each device is stored
-as a YAML or JSON file under `devices/`, while SQLite is used as a disposable
-search index that can be rebuilt at any time.
-
-## First-version Scope
-
-- Device families: Si MOSFET, SiC MOSFET/JFET/SBD, GaN HEMT, IGBT, diodes, and
-  power modules.
-- Data integrity: every parameter and curve references a source, declares units,
-  and records test conditions where available.
-- Local management UI: React/Vite frontend with device list, detail views,
-  comparison, validation status, and curve import preview.
-- Backend API: FastAPI endpoints for listing, reading, creating, updating,
-  validating, indexing, taxonomy lookup, and CSV curve import.
+V1 intentionally has no frontend and does not generate PLECS, SPICE, Matlab, or
+Simulink models. It only records available model/data assets so later exporters
+can be added without changing the agent workflow.
 
 ## Layout
 
 ```text
-backend/          FastAPI app and data/index services
-devices/          YAML source records, one file per device
-frontend/         React/Vite management UI
-schemas/          JSON Schema documentation for the device file shape
-templates/        Data-entry templates for datasheet and characterization sources
-tests/            Standard-library tests for validation and indexing behavior
+aipe/                    Core API, repository, TDB import, auth, comparison
+data/tdb_raw/            Raw public TDB JSON files downloaded from File Exchange
+data/devices/            Normalized AIPE DeviceSummary JSON files
+data/model_assets/       Optional manually registered model asset JSON files
+skill/aipe-power-device/ Codex skill and helper script
+tests/                   Offline unit/API tests
 ```
 
-## Run Backend
+## Run
+
+Use Python 3.11+ for the full environment because `transistordatabase==0.5.1`
+requires Python 3.11 or newer.
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn backend.main:app --reload
+uvicorn aipe.api:app --reload
 ```
 
-The backend serves the API at `http://127.0.0.1:8000/api`.
+The API serves `http://127.0.0.1:8000/api`.
 
-## Run Frontend
+Import the public TDB index:
 
 ```bash
-cd frontend
-npm install
-npm run dev
+curl -X POST http://127.0.0.1:8000/api/admin/import-tdb-index
 ```
 
-The frontend expects the backend at `http://127.0.0.1:8000` by default.
+## API
 
-## Data Philosophy
+- `GET /api/health`
+- `GET /api/devices?q=&type=&manufacturer=&min_voltage=&min_current=`
+- `GET /api/devices/{device_id}`
+- `POST /api/devices/compare`
+- `GET /api/devices/{device_id}/model-assets`
+- `POST /api/admin/import-tdb-index`
 
-This repository deliberately separates source data from indexes and derived
-outputs. Device files are reviewable in Git, while SQLite can be rebuilt using
-`POST /api/index/rebuild`. Future exporters for PLECS, LTspice, Simulink,
-Matlab, CSV, and virtual datasheets should consume validated `DeviceRecord`
-files rather than becoming a second source of truth.
+## Auth
 
-## Source Categories
+Local development is open by default. Set both values below to require API-key
+auth:
 
-Each parameter, curve, and raw dataset points back to a `source_id`. Sources are
-classified by `type`, `category`, and optional `subtype`, so manufacturer
-datasheets and lab characterization data can coexist in one device record.
+```bash
+export AIPE_REQUIRE_API_KEY=1
+export AIPE_API_KEY=your-token
+```
 
-- `manufacturer_document`: datasheet tables, datasheet curves, application notes.
-- `third_party_characterization`: external lab reports and raw test datasets.
-- `internal_measurement`: in-house bench data.
-- `manufacturer_model`: SPICE, PLECS, or other vendor model files.
-- `simulation` and `estimate`: derived or placeholder values.
+Requests must then include `X-AIPE-API-Key`.
 
-Use `templates/device-record-template.yaml`,
-`templates/characterization-source-template.yaml`, and
-`templates/raw-data-package-template.yaml` when adding new devices.
+## License Note
+
+This V1 directly declares `transistordatabase==0.5.1` as a research dependency
+and imports public File Exchange JSON. The upstream repository has inconsistent
+license signals that should be reviewed before any commercial distribution.

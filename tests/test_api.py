@@ -1,58 +1,58 @@
+from __future__ import annotations
+
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-from backend.main import app
+import aipe.api as api
+from aipe.repository import DeviceRepository
+from aipe.tdb_loader import normalize_tdb_record
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class ApiTests(unittest.TestCase):
     def setUp(self):
-        self.client = TestClient(app)
-        self.client.post("/api/index/rebuild")
+        self.temp_dir = tempfile.TemporaryDirectory()
+        base = Path(self.temp_dir.name)
+        api.repository = DeviceRepository(base / "devices", base / "model_assets")
+        record = json.loads((ROOT / "tests" / "fixtures" / "tdb_sample.json").read_text(encoding="utf-8"))
+        api.repository.save_device(normalize_tdb_record(record, imported_at="2026-06-09T00:00:00+00:00"))
+        self.client = TestClient(api.app)
 
-    def test_taxonomy_endpoint(self):
-        response = self.client.get("/api/taxonomy")
+    def tearDown(self):
+        self.temp_dir.cleanup()
+
+    def test_health(self):
+        response = self.client.get("/api/health")
         self.assertEqual(200, response.status_code)
-        self.assertIn("GaN", response.json()["technologies"])
+        self.assertEqual(1, response.json()["device_count"])
 
-    def test_devices_endpoint(self):
-        response = self.client.get("/api/devices?technology=GaN")
+    def test_search_filters(self):
+        response = self.client.get("/api/devices?type=GaN-Transistor&min_voltage=600&min_current=10")
         self.assertEqual(200, response.status_code)
-        rows = response.json()
-        self.assertEqual(1, len(rows))
-        self.assertEqual("EPC-GAN-EXAMPLE", rows[0]["part_number"])
+        self.assertEqual("gansystems-gs66506t", response.json()[0]["id"])
 
-    def test_devices_endpoint_filters_by_manufacturer(self):
-        response = self.client.get("/api/devices?manufacturer=Infineon")
-        self.assertEqual(200, response.status_code)
-        rows = response.json()
-        self.assertEqual(2, len(rows))
-        self.assertTrue(all(row["manufacturer"] == "Infineon" for row in rows))
-
-    def test_device_detail_includes_validation(self):
-        response = self.client.get("/api/devices/epc-gan-hemt-example")
+    def test_detail_contains_origin_and_datasheet(self):
+        response = self.client.get("/api/devices/gansystems-gs66506t")
         self.assertEqual(200, response.status_code)
         payload = response.json()
-        self.assertEqual([], payload["validation"]["errors"])
-        self.assertEqual("GaN", payload["device"]["technology"])
-        self.assertEqual("third_party_characterization", payload["device"]["sources"][1]["category"])
+        self.assertEqual("tdb_file_exchange", payload["origin"]["source"])
+        self.assertTrue(payload["datasheet"]["url"])
 
-    def test_curve_csv_import(self):
-        response = self.client.post(
-            "/api/curves/import-csv",
-            json={
-                "csv_text": "0,0\n1,2\n2,4",
-                "curve_id": "test",
-                "curve_type": "iv_output",
-                "x_label": "Voltage",
-                "x_unit": "V",
-                "y_label": "Current",
-                "y_unit": "A",
-                "source_id": "ds",
-            },
-        )
+    def test_compare(self):
+        response = self.client.post("/api/devices/compare", json={"device_ids": ["gansystems-gs66506t"]})
         self.assertEqual(200, response.status_code)
-        self.assertEqual(3, response.json()["points"])
+        self.assertEqual("gansystems-gs66506t", response.json()["rows"][0]["device_id"])
+
+    def test_model_assets(self):
+        response = self.client.get("/api/devices/gansystems-gs66506t/model-assets")
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(["tdb_json", "datasheet"], [asset["kind"] for asset in response.json()])
 
 
 if __name__ == "__main__":

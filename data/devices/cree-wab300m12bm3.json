@@ -1,0 +1,62 @@
+{
+  "curve_families": {
+    "capacitance": true,
+    "diode_channel": true,
+    "eoss": false,
+    "gate_charge": false,
+    "raw_measurement": false,
+    "reverse_recovery": true,
+    "soa": true,
+    "switch_channel": true,
+    "switching_energy": true,
+    "thermal": true
+  },
+  "datasheet": {
+    "date": "2020-05-20",
+    "url": "https://assets.wolfspeed.com/uploads/2020/12/Wolfspeed_WAB300M12BM3.pdf",
+    "version": "A"
+  },
+  "device_type": "SiC-MOSFET",
+  "id": "cree-wab300m12bm3",
+  "manufacturer": "CREE",
+  "model_assets": [
+    {
+      "asset_id": "cree-wab300m12bm3-tdb-json",
+      "device_id": "cree-wab300m12bm3",
+      "kind": "tdb_json",
+      "notes": "Raw public TDB JSON. This is a data asset, not a validated simulator model.",
+      "path_or_url": "data/tdb_raw/CREE_WAB300M12BM3.json",
+      "source": "TDB public File Exchange",
+      "status": "available"
+    },
+    {
+      "asset_id": "cree-wab300m12bm3-datasheet",
+      "device_id": "cree-wab300m12bm3",
+      "kind": "datasheet",
+      "notes": "External datasheet URL recorded by the TDB public sample.",
+      "path_or_url": "https://assets.wolfspeed.com/uploads/2020/12/Wolfspeed_WAB300M12BM3.pdf",
+      "source": "Manufacturer datasheet link via TDB",
+      "status": "external"
+    }
+  ],
+  "name": "CREE_WAB300M12BM3",
+  "origin": {
+    "imported_at": "2026-06-09T14:58:03.344656+00:00",
+    "license_note": "TDB public sample; upstream license status should be reviewed before commercial distribution.",
+    "raw_path": "data/tdb_raw/CREE_WAB300M12BM3.json",
+    "source": "tdb_file_exchange",
+    "source_url": "https://raw.githubusercontent.com/upb-lea/transistordatabase_File_Exchange/main/SiC-MOSFET/1200V/CREE_WAB300M12BM3.json"
+  },
+  "package": {
+    "cooling_area_m2": 0.0062555,
+    "housing_area_m2": 0.0062555,
+    "housing_type": "62mm"
+  },
+  "part_number": "WAB300M12BM3",
+  "ratings": {
+    "absolute_current_a": 600.0,
+    "continuous_current_a": 300.0,
+    "voltage_v": 1200.0
+  },
+  "technology": "SiC"
+}

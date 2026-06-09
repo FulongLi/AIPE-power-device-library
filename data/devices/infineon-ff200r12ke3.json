@@ -1,0 +1,62 @@
+{
+  "curve_families": {
+    "capacitance": false,
+    "diode_channel": true,
+    "eoss": false,
+    "gate_charge": false,
+    "raw_measurement": false,
+    "reverse_recovery": true,
+    "soa": true,
+    "switch_channel": true,
+    "switching_energy": true,
+    "thermal": true
+  },
+  "datasheet": {
+    "date": "2013-10-02",
+    "url": "https://www.infineon.com/cms/en/product/power/igbt/igbt-modules/ff200r12ke3/",
+    "version": "3.1"
+  },
+  "device_type": "IGBT",
+  "id": "infineon-ff200r12ke3",
+  "manufacturer": "Infineon",
+  "model_assets": [
+    {
+      "asset_id": "infineon-ff200r12ke3-tdb-json",
+      "device_id": "infineon-ff200r12ke3",
+      "kind": "tdb_json",
+      "notes": "Raw public TDB JSON. This is a data asset, not a validated simulator model.",
+      "path_or_url": "data/tdb_raw/Infineon_FF200R12KE3.json",
+      "source": "TDB public File Exchange",
+      "status": "available"
+    },
+    {
+      "asset_id": "infineon-ff200r12ke3-datasheet",
+      "device_id": "infineon-ff200r12ke3",
+      "kind": "datasheet",
+      "notes": "External datasheet URL recorded by the TDB public sample.",
+      "path_or_url": "https://www.infineon.com/cms/en/product/power/igbt/igbt-modules/ff200r12ke3/",
+      "source": "Manufacturer datasheet link via TDB",
+      "status": "external"
+    }
+  ],
+  "name": "Infineon_FF200R12KE3",
+  "origin": {
+    "imported_at": "2026-06-09T14:58:02.079044+00:00",
+    "license_note": "TDB public sample; upstream license status should be reviewed before commercial distribution.",
+    "raw_path": "data/tdb_raw/Infineon_FF200R12KE3.json",
+    "source": "tdb_file_exchange",
+    "source_url": "https://raw.githubusercontent.com/upb-lea/transistordatabase_File_Exchange/main/IGBT/1200V/Infineon_FF200R12KE3.json"
+  },
+  "package": {
+    "cooling_area_m2": 0.006533,
+    "housing_area_m2": 0.006533,
+    "housing_type": "62mm"
+  },
+  "part_number": "FF200R12KE3",
+  "ratings": {
+    "absolute_current_a": 400.0,
+    "continuous_current_a": 200.0,
+    "voltage_v": 1200.0
+  },
+  "technology": "Si"
+}

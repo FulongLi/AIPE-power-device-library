@@ -1,0 +1,62 @@
+{
+  "curve_families": {
+    "capacitance": true,
+    "diode_channel": true,
+    "eoss": false,
+    "gate_charge": true,
+    "raw_measurement": true,
+    "reverse_recovery": false,
+    "soa": true,
+    "switch_channel": true,
+    "switching_energy": true,
+    "thermal": true
+  },
+  "datasheet": {
+    "date": "2020-10",
+    "url": "https://www.infineon.com/dgdl/Infineon-IPW65R090CFD7-DataSheet-v02_00-EN.pdf?fileId=5546d4627572d8fd01758f0d48c07bb6",
+    "version": "2.0"
+  },
+  "device_type": "MOSFET",
+  "id": "infineon-ipw65r090cfd7",
+  "manufacturer": "Infineon",
+  "model_assets": [
+    {
+      "asset_id": "infineon-ipw65r090cfd7-tdb-json",
+      "device_id": "infineon-ipw65r090cfd7",
+      "kind": "tdb_json",
+      "notes": "Raw public TDB JSON. This is a data asset, not a validated simulator model.",
+      "path_or_url": "data/tdb_raw/Infineon_IPW65R090CFD7.json",
+      "source": "TDB public File Exchange",
+      "status": "available"
+    },
+    {
+      "asset_id": "infineon-ipw65r090cfd7-datasheet",
+      "device_id": "infineon-ipw65r090cfd7",
+      "kind": "datasheet",
+      "notes": "External datasheet URL recorded by the TDB public sample.",
+      "path_or_url": "https://www.infineon.com/dgdl/Infineon-IPW65R090CFD7-DataSheet-v02_00-EN.pdf?fileId=5546d4627572d8fd01758f0d48c07bb6",
+      "source": "Manufacturer datasheet link via TDB",
+      "status": "external"
+    }
+  ],
+  "name": "Infineon_IPW65R090CFD7",
+  "origin": {
+    "imported_at": "2026-06-09T14:58:03.008817+00:00",
+    "license_note": "TDB public sample; upstream license status should be reviewed before commercial distribution.",
+    "raw_path": "data/tdb_raw/Infineon_IPW65R090CFD7.json",
+    "source": "tdb_file_exchange",
+    "source_url": "https://raw.githubusercontent.com/upb-lea/transistordatabase_File_Exchange/main/Si-MOSFET/650V/Infineon_IPW65R090CFD7.json"
+  },
+  "package": {
+    "cooling_area_m2": 0.00016,
+    "housing_area_m2": 0.000367,
+    "housing_type": "TO247"
+  },
+  "part_number": "IPW65R090CFD7",
+  "ratings": {
+    "absolute_current_a": 107.0,
+    "continuous_current_a": 25.0,
+    "voltage_v": 700.0
+  },
+  "technology": ""
+}

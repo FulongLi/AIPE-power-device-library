@@ -1,0 +1,62 @@
+{
+  "curve_families": {
+    "capacitance": true,
+    "diode_channel": true,
+    "eoss": true,
+    "gate_charge": true,
+    "raw_measurement": false,
+    "reverse_recovery": false,
+    "soa": true,
+    "switch_channel": true,
+    "switching_energy": true,
+    "thermal": true
+  },
+  "datasheet": {
+    "date": "2020-09",
+    "url": "https://assets.wolfspeed.com/uploads/2020/12/c3m0065100j.pdf",
+    "version": "1"
+  },
+  "device_type": "SiC-MOSFET",
+  "id": "cree-c3m0065100j",
+  "manufacturer": "CREE",
+  "model_assets": [
+    {
+      "asset_id": "cree-c3m0065100j-tdb-json",
+      "device_id": "cree-c3m0065100j",
+      "kind": "tdb_json",
+      "notes": "Raw public TDB JSON. This is a data asset, not a validated simulator model.",
+      "path_or_url": "data/tdb_raw/CREE_C3M0065100J.json",
+      "source": "TDB public File Exchange",
+      "status": "available"
+    },
+    {
+      "asset_id": "cree-c3m0065100j-datasheet",
+      "device_id": "cree-c3m0065100j",
+      "kind": "datasheet",
+      "notes": "External datasheet URL recorded by the TDB public sample.",
+      "path_or_url": "https://assets.wolfspeed.com/uploads/2020/12/c3m0065100j.pdf",
+      "source": "Manufacturer datasheet link via TDB",
+      "status": "external"
+    }
+  ],
+  "name": "CREE_C3M0065100J",
+  "origin": {
+    "imported_at": "2026-06-09T14:58:03.078030+00:00",
+    "license_note": "TDB public sample; upstream license status should be reviewed before commercial distribution.",
+    "raw_path": "data/tdb_raw/CREE_C3M0065100J.json",
+    "source": "tdb_file_exchange",
+    "source_url": "https://raw.githubusercontent.com/upb-lea/transistordatabase_File_Exchange/main/SiC-MOSFET/1000V/CREE_C3M0065100J.json"
+  },
+  "package": {
+    "cooling_area_m2": 6.2849e-05,
+    "housing_area_m2": 0.00017741,
+    "housing_type": "TO263"
+  },
+  "part_number": "C3M0065100J",
+  "ratings": {
+    "absolute_current_a": 90.0,
+    "continuous_current_a": 21.0,
+    "voltage_v": 1000.0
+  },
+  "technology": "SiC"
+}

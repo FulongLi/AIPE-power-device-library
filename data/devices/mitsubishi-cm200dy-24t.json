@@ -1,0 +1,62 @@
+{
+  "curve_families": {
+    "capacitance": true,
+    "diode_channel": true,
+    "eoss": false,
+    "gate_charge": true,
+    "raw_measurement": false,
+    "reverse_recovery": true,
+    "soa": true,
+    "switch_channel": true,
+    "switching_energy": true,
+    "thermal": true
+  },
+  "datasheet": {
+    "date": "2020-12",
+    "url": "https://www.mitsubishielectric.com/semiconductors/content/product/powermodule/igbt/t_series/cm200dy-24t_e.pdf",
+    "version": ""
+  },
+  "device_type": "IGBT",
+  "id": "mitsubishi-cm200dy-24t",
+  "manufacturer": "Mitsubishi Electric",
+  "model_assets": [
+    {
+      "asset_id": "mitsubishi-cm200dy-24t-tdb-json",
+      "device_id": "mitsubishi-cm200dy-24t",
+      "kind": "tdb_json",
+      "notes": "Raw public TDB JSON. This is a data asset, not a validated simulator model.",
+      "path_or_url": "data/tdb_raw/Mitsubishi_CM200DY-24T.json",
+      "source": "TDB public File Exchange",
+      "status": "available"
+    },
+    {
+      "asset_id": "mitsubishi-cm200dy-24t-datasheet",
+      "device_id": "mitsubishi-cm200dy-24t",
+      "kind": "datasheet",
+      "notes": "External datasheet URL recorded by the TDB public sample.",
+      "path_or_url": "https://www.mitsubishielectric.com/semiconductors/content/product/powermodule/igbt/t_series/cm200dy-24t_e.pdf",
+      "source": "Manufacturer datasheet link via TDB",
+      "status": "external"
+    }
+  ],
+  "name": "Mitsubishi_CM200DY-24T",
+  "origin": {
+    "imported_at": "2026-06-09T14:58:02.207200+00:00",
+    "license_note": "TDB public sample; upstream license status should be reviewed before commercial distribution.",
+    "raw_path": "data/tdb_raw/Mitsubishi_CM200DY-24T.json",
+    "source": "tdb_file_exchange",
+    "source_url": "https://raw.githubusercontent.com/upb-lea/transistordatabase_File_Exchange/main/IGBT/1200V/Mitsubishi_CM200DY-24T.json"
+  },
+  "package": {
+    "cooling_area_m2": 0.002318,
+    "housing_area_m2": 0.004512,
+    "housing_type": "std type"
+  },
+  "part_number": "CM200DY-24T",
+  "ratings": {
+    "absolute_current_a": 400.0,
+    "continuous_current_a": 200.0,
+    "voltage_v": 1200.0
+  },
+  "technology": "Si"
+}
