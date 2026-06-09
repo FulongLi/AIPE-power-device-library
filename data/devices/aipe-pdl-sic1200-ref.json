@@ -1,0 +1,78 @@
+{
+  "curve_families": {
+    "capacitance": true,
+    "diode_channel": true,
+    "eoss": true,
+    "gate_charge": true,
+    "raw_measurement": false,
+    "reverse_recovery": false,
+    "soa": true,
+    "switch_channel": true,
+    "switching_energy": true,
+    "thermal": true
+  },
+  "datasheet": {
+    "date": "2026-06-09",
+    "url": "",
+    "version": "AIPE-PDL-REF-0.1"
+  },
+  "device_type": "SiC MOSFET",
+  "id": "aipe-pdl-sic1200-ref",
+  "manufacturer": "AIPE PDL",
+  "model_assets": [
+    {
+      "asset_id": "aipe-pdl-sic1200-ref-aipe-pdl-record",
+      "device_id": "aipe-pdl-sic1200-ref",
+      "kind": "aipe_pdl_record",
+      "notes": "Native AIPE PDL seed record. This is a curated data record, not a simulator model.",
+      "path_or_url": "data/aipe_pdl_seed/aipe-pdl-sic1200-ref.json",
+      "source": "AIPE PDL",
+      "status": "available"
+    },
+    {
+      "asset_id": "aipe-pdl-sic1200-ref-plecs",
+      "device_id": "aipe-pdl-sic1200-ref",
+      "kind": "plecs",
+      "notes": "PLECS model slot reserved for AIPE PDL validation.",
+      "path_or_url": "",
+      "source": "AIPE PDL",
+      "status": "planned"
+    },
+    {
+      "asset_id": "aipe-pdl-sic1200-ref-spice",
+      "device_id": "aipe-pdl-sic1200-ref",
+      "kind": "spice",
+      "notes": "SPICE model slot reserved for AIPE PDL validation.",
+      "path_or_url": "",
+      "source": "AIPE PDL",
+      "status": "planned"
+    }
+  ],
+  "name": "AIPE PDL SiC 1200V Reference Device",
+  "origin": {
+    "document_id": "AIPE-PDL-SEED-SIC1200-001",
+    "imported_at": "2026-06-09T15:25:17.041173+00:00",
+    "notes": "Internal AIPE PDL reference seed for API and skill validation.",
+    "raw_path": "data/aipe_pdl_seed/aipe-pdl-sic1200-ref.json",
+    "revision": "0.1",
+    "source": "aipe_pdl",
+    "source_url": ""
+  },
+  "package": {
+    "housing_type": "AIPE-TO247-4",
+    "mounting": "through_hole",
+    "pins": [
+      "drain",
+      "source",
+      "gate",
+      "kelvin_source"
+    ]
+  },
+  "part_number": "APDL-SIC1200-080",
+  "ratings": {
+    "absolute_current_a": 160.0,
+    "continuous_current_a": 80.0,
+    "voltage_v": 1200.0
+  },
+  "technology": "SiC"
+}

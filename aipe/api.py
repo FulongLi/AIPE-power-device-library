@@ -1,14 +1,12 @@
 from __future__ import annotations
 
-import importlib.util
 from typing import Any, Optional
 
 from fastapi import Body, Depends, FastAPI, HTTPException, Query
 
 from . import __version__
 from .auth import verify_api_key
-from .config import TDB_INDEX_URL
-from .importer import import_tdb_index
+from .importer import import_aipe_pdl_seeds
 from .repository import DeviceRepository
 
 
@@ -22,7 +20,7 @@ def health() -> dict[str, Any]:
         "status": "ok",
         "version": __version__,
         "device_count": len(repository.list_devices()),
-        "transistordatabase_dependency": dependency_status("transistordatabase"),
+        "platform": "AIPE PDL",
     }
 
 
@@ -67,12 +65,6 @@ def model_assets(device_id: str) -> list[dict[str, Any]]:
         raise HTTPException(status_code=404, detail="Device not found") from exc
 
 
-@app.post("/api/admin/import-tdb-index", dependencies=[Depends(verify_api_key)])
-def import_public_tdb_index(payload: Optional[dict[str, Any]] = Body(default=None)) -> dict[str, Any]:
-    index_url = (payload or {}).get("index_url") or TDB_INDEX_URL
-    return import_tdb_index(repository=repository, index_url=index_url)
-
-
-def dependency_status(package_name: str) -> dict[str, Any]:
-    spec = importlib.util.find_spec(package_name)
-    return {"package": package_name, "installed": spec is not None}
+@app.post("/api/admin/import-aipe-pdl-seeds", dependencies=[Depends(verify_api_key)])
+def import_native_aipe_pdl_seeds(payload: Optional[dict[str, Any]] = Body(default=None)) -> dict[str, Any]:
+    return import_aipe_pdl_seeds(repository=repository)

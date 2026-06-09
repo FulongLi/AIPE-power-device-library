@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 
-MODEL_ASSET_KINDS = {"tdb_json", "spice", "plecs", "matlab", "simulink", "datasheet"}
+MODEL_ASSET_KINDS = {"aipe_pdl_record", "spice", "plecs", "matlab", "simulink", "datasheet"}
 MODEL_ASSET_STATUSES = {"available", "external", "planned", "missing"}
 
 

@@ -1,0 +1,48 @@
+{
+  "id": "aipe-pdl-igbt1200-ref",
+  "name": "AIPE PDL IGBT 1200V Reference Module",
+  "manufacturer": "AIPE PDL",
+  "part_number": "APDL-IGBT1200-200M",
+  "device_type": "IGBT Module",
+  "technology": "Si",
+  "ratings": {
+    "voltage_v": 1200,
+    "absolute_current_a": 400,
+    "continuous_current_a": 200
+  },
+  "package": {
+    "housing_type": "AIPE-62MM-MODULE",
+    "mounting": "baseplate",
+    "pins": ["dc_plus", "dc_minus", "ac", "gate_high", "gate_low"]
+  },
+  "datasheet": {
+    "date": "2026-06-09",
+    "version": "AIPE-PDL-REF-0.1"
+  },
+  "curve_families": {
+    "capacitance": false,
+    "eoss": false,
+    "switch_channel": true,
+    "diode_channel": true,
+    "switching_energy": true,
+    "reverse_recovery": true,
+    "thermal": true,
+    "gate_charge": false,
+    "soa": true,
+    "raw_measurement": false
+  },
+  "model_assets": [
+    {
+      "kind": "matlab",
+      "status": "planned",
+      "source": "AIPE PDL",
+      "path_or_url": "",
+      "notes": "Matlab model slot reserved for AIPE PDL validation."
+    }
+  ],
+  "source": {
+    "document_id": "AIPE-PDL-SEED-IGBT1200-001",
+    "revision": "0.1",
+    "notes": "Internal AIPE PDL reference seed for API and skill validation."
+  }
+}

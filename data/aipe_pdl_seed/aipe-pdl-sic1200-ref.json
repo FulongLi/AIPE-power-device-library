@@ -1,0 +1,55 @@
+{
+  "id": "aipe-pdl-sic1200-ref",
+  "name": "AIPE PDL SiC 1200V Reference Device",
+  "manufacturer": "AIPE PDL",
+  "part_number": "APDL-SIC1200-080",
+  "device_type": "SiC MOSFET",
+  "technology": "SiC",
+  "ratings": {
+    "voltage_v": 1200,
+    "absolute_current_a": 160,
+    "continuous_current_a": 80
+  },
+  "package": {
+    "housing_type": "AIPE-TO247-4",
+    "mounting": "through_hole",
+    "pins": ["drain", "source", "gate", "kelvin_source"]
+  },
+  "datasheet": {
+    "date": "2026-06-09",
+    "version": "AIPE-PDL-REF-0.1"
+  },
+  "curve_families": {
+    "capacitance": true,
+    "eoss": true,
+    "switch_channel": true,
+    "diode_channel": true,
+    "switching_energy": true,
+    "reverse_recovery": false,
+    "thermal": true,
+    "gate_charge": true,
+    "soa": true,
+    "raw_measurement": false
+  },
+  "model_assets": [
+    {
+      "kind": "plecs",
+      "status": "planned",
+      "source": "AIPE PDL",
+      "path_or_url": "",
+      "notes": "PLECS model slot reserved for AIPE PDL validation."
+    },
+    {
+      "kind": "spice",
+      "status": "planned",
+      "source": "AIPE PDL",
+      "path_or_url": "",
+      "notes": "SPICE model slot reserved for AIPE PDL validation."
+    }
+  ],
+  "source": {
+    "document_id": "AIPE-PDL-SEED-SIC1200-001",
+    "revision": "0.1",
+    "notes": "Internal AIPE PDL reference seed for API and skill validation."
+  }
+}

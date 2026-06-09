@@ -1,10 +1,9 @@
-# AIPE Device Intelligence V1
+# AIPE PDL Device Intelligence V1
 
-AIPE V1 is a Codex-facing gateway for public transistor data and model asset
-discovery. It imports public records from the UPB-LEA Transistor Database File
-Exchange, stores raw JSON plus normalized device summaries, and exposes a small
-FastAPI surface that a Codex skill can call for search, detail, comparison, and
-model-asset lookup.
+AIPE PDL V1 is a Codex-facing gateway for AIPE Power Device Library records and
+model asset discovery. It imports native AIPE PDL seed records, stores
+normalized device summaries, and exposes a small FastAPI surface that a Codex
+skill can call for search, detail, comparison, and model-asset lookup.
 
 V1 intentionally has no frontend and does not generate PLECS, SPICE, Matlab, or
 Simulink models. It only records available model/data assets so later exporters
@@ -13,8 +12,8 @@ can be added without changing the agent workflow.
 ## Layout
 
 ```text
-aipe/                    Core API, repository, TDB import, auth, comparison
-data/tdb_raw/            Raw public TDB JSON files downloaded from File Exchange
+aipe/                    Core API, repository, AIPE PDL import, auth, comparison
+data/aipe_pdl_seed/      Native AIPE PDL seed records
 data/devices/            Normalized AIPE DeviceSummary JSON files
 data/model_assets/       Optional manually registered model asset JSON files
 skill/aipe-power-device/ Codex skill and helper script
@@ -23,11 +22,8 @@ tests/                   Offline unit/API tests
 
 ## Run
 
-Use Python 3.11+ for the full environment because `transistordatabase==0.5.1`
-requires Python 3.11 or newer.
-
 ```bash
-python3.11 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn aipe.api:app --reload
@@ -35,10 +31,10 @@ uvicorn aipe.api:app --reload
 
 The API serves `http://127.0.0.1:8000/api`.
 
-Import the public TDB index:
+Import native AIPE PDL seed records:
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/admin/import-tdb-index
+curl -X POST http://127.0.0.1:8000/api/admin/import-aipe-pdl-seeds
 ```
 
 ## API
@@ -48,7 +44,7 @@ curl -X POST http://127.0.0.1:8000/api/admin/import-tdb-index
 - `GET /api/devices/{device_id}`
 - `POST /api/devices/compare`
 - `GET /api/devices/{device_id}/model-assets`
-- `POST /api/admin/import-tdb-index`
+- `POST /api/admin/import-aipe-pdl-seeds`
 
 ## Auth
 
@@ -62,8 +58,8 @@ export AIPE_API_KEY=your-token
 
 Requests must then include `X-AIPE-API-Key`.
 
-## License Note
+## Model Asset Note
 
-This V1 directly declares `transistordatabase==0.5.1` as a research dependency
-and imports public File Exchange JSON. The upstream repository has inconsistent
-license signals that should be reviewed before any commercial distribution.
+V1 records model asset availability and planned model slots. It does not claim
+SPICE, PLECS, Matlab, or Simulink models are validated unless an AIPE PDL asset
+record explicitly marks them available.

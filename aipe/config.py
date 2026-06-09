@@ -6,11 +6,9 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
-TDB_RAW_DIR = DATA_DIR / "tdb_raw"
+AIPE_PDL_SEED_DIR = DATA_DIR / "aipe_pdl_seed"
 DEVICE_SUMMARY_DIR = DATA_DIR / "devices"
 MODEL_ASSET_DIR = DATA_DIR / "model_assets"
-
-TDB_INDEX_URL = "https://raw.githubusercontent.com/upb-lea/transistordatabase_File_Exchange/main/index.txt"
 
 
 def require_api_key() -> bool:

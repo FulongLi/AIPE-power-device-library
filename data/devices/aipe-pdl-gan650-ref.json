@@ -1,0 +1,68 @@
+{
+  "curve_families": {
+    "capacitance": true,
+    "diode_channel": false,
+    "eoss": true,
+    "gate_charge": true,
+    "raw_measurement": false,
+    "reverse_recovery": false,
+    "soa": false,
+    "switch_channel": true,
+    "switching_energy": true,
+    "thermal": true
+  },
+  "datasheet": {
+    "date": "2026-06-09",
+    "url": "",
+    "version": "AIPE-PDL-REF-0.1"
+  },
+  "device_type": "GaN HEMT",
+  "id": "aipe-pdl-gan650-ref",
+  "manufacturer": "AIPE PDL",
+  "model_assets": [
+    {
+      "asset_id": "aipe-pdl-gan650-ref-aipe-pdl-record",
+      "device_id": "aipe-pdl-gan650-ref",
+      "kind": "aipe_pdl_record",
+      "notes": "Native AIPE PDL seed record. This is a curated data record, not a simulator model.",
+      "path_or_url": "data/aipe_pdl_seed/aipe-pdl-gan650-ref.json",
+      "source": "AIPE PDL",
+      "status": "available"
+    },
+    {
+      "asset_id": "aipe-pdl-gan650-ref-spice",
+      "device_id": "aipe-pdl-gan650-ref",
+      "kind": "spice",
+      "notes": "SPICE model slot reserved for AIPE PDL validation.",
+      "path_or_url": "",
+      "source": "AIPE PDL",
+      "status": "planned"
+    }
+  ],
+  "name": "AIPE PDL GaN 650V Reference Device",
+  "origin": {
+    "document_id": "AIPE-PDL-SEED-GAN650-001",
+    "imported_at": "2026-06-09T15:25:17.040711+00:00",
+    "notes": "Internal AIPE PDL reference seed for API and skill validation.",
+    "raw_path": "data/aipe_pdl_seed/aipe-pdl-gan650-ref.json",
+    "revision": "0.1",
+    "source": "aipe_pdl",
+    "source_url": ""
+  },
+  "package": {
+    "housing_type": "AIPE-LGA-8",
+    "mounting": "surface_mount",
+    "pins": [
+      "drain",
+      "source",
+      "gate"
+    ]
+  },
+  "part_number": "APDL-GAN650-018",
+  "ratings": {
+    "absolute_current_a": 22.5,
+    "continuous_current_a": 18.0,
+    "voltage_v": 650.0
+  },
+  "technology": "GaN"
+}
