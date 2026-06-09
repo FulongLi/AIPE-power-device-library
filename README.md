@@ -20,21 +20,69 @@ skill/aipe-power-device/ Codex skill and helper script
 tests/                   Offline unit/API tests
 ```
 
-## Run
+## Quick Start
+
+Create an environment and install the API dependencies:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+Import the native AIPE PDL seed records into normalized device summaries:
+
+```bash
+python -c "from aipe.importer import import_aipe_pdl_seeds; from aipe.repository import DeviceRepository; print(import_aipe_pdl_seeds(repository=DeviceRepository()))"
+```
+
+Start the local API:
+
+```bash
 uvicorn aipe.api:app --reload
 ```
 
 The API serves `http://127.0.0.1:8000/api`.
 
-Import native AIPE PDL seed records:
+Check that it is running:
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/admin/import-aipe-pdl-seeds
+curl http://127.0.0.1:8000/api/health
+```
+
+## Usage Examples
+
+Search AIPE PDL devices:
+
+```bash
+curl "http://127.0.0.1:8000/api/devices?min_voltage=650"
+```
+
+Read one device:
+
+```bash
+curl http://127.0.0.1:8000/api/devices/aipe-pdl-gan650-ref
+```
+
+Compare candidate devices:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/devices/compare \
+  -H "Content-Type: application/json" \
+  -d '{"device_ids":["aipe-pdl-gan650-ref","aipe-pdl-sic1200-ref"]}'
+```
+
+List model assets for a device:
+
+```bash
+curl http://127.0.0.1:8000/api/devices/aipe-pdl-gan650-ref/model-assets
+```
+
+Use the Codex helper script:
+
+```bash
+python skill/aipe-power-device/scripts/aipe.py search --q GaN
+python skill/aipe-power-device/scripts/aipe.py compare aipe-pdl-gan650-ref aipe-pdl-sic1200-ref
 ```
 
 ## API
@@ -57,6 +105,14 @@ export AIPE_API_KEY=your-token
 ```
 
 Requests must then include `X-AIPE-API-Key`.
+
+## Tests
+
+Run the offline test suite:
+
+```bash
+.venv/bin/python -m unittest discover -s tests
+```
 
 ## Model Asset Note
 
